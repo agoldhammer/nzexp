@@ -1,0 +1,9 @@
+.DS_Store
+*~
+.envrc
+.cache/
+*.pyc
+.pytest_cache/
+.vscode
+nzexp.code-workspace
+*.code-workspace
