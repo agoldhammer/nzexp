@@ -2,7 +2,7 @@ from nzdb.dbif import xget_by_date
 import spacy
 from dataclasses import dataclass
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_lg", exclude=["parser"])
 
 
 def get_texts_by_date(start: str, end: str) -> list[str]:
@@ -38,15 +38,22 @@ class entclass:
 
 def main():
     docs = get_docs_by_date("2022-03-04", "2022-03-05")
+    # for doc in docs:
+    #     for token in doc:
+    #         print(token)
+    #     print("....")
+    # for doc in docs:
+    #     for tok in doc:
+    #         if tok.like_url:
+    #             print(tok.i, tok.text, tok.doc)
+    # for ent in doc.ents:
+    #     entcs.add(entclass(ent.text, ent.label_))
     entcs = set()
-    for doc in docs:
-        for ent in doc.ents:
-            entcs.add(entclass(ent.text, ent.label_))
     for entc in entcs:
         print(entc)
     print(len(docs))
     print(len(entcs))
-    # spacy.displacy.serve(docs, style="ent", port=5050)
+    spacy.displacy.serve(docs, style="ent", port=5050)
     # for text in texts:
     #     print(text)
     #     doc = nlp(text)
